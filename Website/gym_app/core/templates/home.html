@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Homepage</h2>
+  <p>Welcome to My Site, 
+  {% if user.is_authenticated %}
+  {{ user.username }}!
+  <p>
+  Click on the Loan Application tab to begin your online application. 
+  </p>
+  {% else %}
+  visitor!	
+  <p>
+  Create an account or login to start your loan application.
+  </p>
+  {% endif %}</p>
+  <p>
+    <strong>Total users registered: </strong> {{ count }}
+  </p>
+{% endblock %}
