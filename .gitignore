@@ -2,3 +2,5 @@
 
 venv/
 Website/gym_app/settings/database.py
+
+Website/gym_app/settings/secrets.py
