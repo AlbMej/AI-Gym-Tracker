@@ -1,3 +1,4 @@
 .idea/
 
 venv/
+Website/gym_app/settings/database.py
