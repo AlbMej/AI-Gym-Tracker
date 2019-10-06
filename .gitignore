@@ -5,5 +5,5 @@ Website/gym_app/settings/database.py
 
 Website/gym_app/settings/secrets.py
 
-Website/gym_app/settings/__pycache__/secrets.cpython-36.pyc
 Website/gym_app/settings/__pycache__/database.cpython-36.pyc
+Website/gym_app/settings/__pycache__/secrets.cpython-36.pyc
