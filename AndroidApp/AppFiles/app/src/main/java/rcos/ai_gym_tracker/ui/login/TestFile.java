@@ -1,4 +1,7 @@
 package rcos.ai_gym_tracker.ui.login;
 
-public class TestFile {
+import android.app.Activity;
+
+public class TestFile extends Activity {
+
 }
