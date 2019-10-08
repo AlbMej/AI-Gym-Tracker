@@ -2,7 +2,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Field
 from django.core.exceptions import ValidationError
-from loan_app.core.models import Loan
+from gym_app.core.models import Loan
 
 class LoanFieldForm(forms.ModelForm):
 

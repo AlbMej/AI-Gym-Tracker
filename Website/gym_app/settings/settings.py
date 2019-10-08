@@ -1,8 +1,7 @@
-try: 
-    from .secrets import *
-except ImportError: 
-    print("Error: make a local version of secrets.py containing the SECRET KEY and DATABASE credentials")
-
+# try: 
+#     from .secrets import *
+# except ImportError: 
+#     print("Error: make a local version of secrets.py containing the SECRET KEY and DATABASE credentials")
 """
 Django settings for gym_app project.
 
@@ -25,24 +24,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+####################################################################
+# SECURITY WARNING: keep the secret key used in production secret! #### Moved secret keys to a local file ####
+####################################################################
 
-### Moved secret keys to a local file ###
+# SECRET_KEY = os.environ['SECRET_KEY']  <-- Use this if you store your secret keys as an environment variable (EX. export SECRET_KEY="mYsEcReTkEy")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+###################################################################
+# SECURITY WARNING: don't run with debug turned on in production! #
+###################################################################
 DEBUG = False
 
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-# AUTHENTICATION_BACKENDS = [
-#     'social_core.backends.yammer.YammerOAuth2'
-#     ]
-
-# LOGIN_URL = '/login/yammer'
-
-# custom namespace
-# SOCIAL_AUTH_URL_NAMESPACE = 'social'
-
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -98,7 +92,9 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-## Moved database credentials to a local file 
+###################################################################
+#          Moved database credentials to a local file             # 
+###################################################################
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
