@@ -1,6 +1,6 @@
 # Where to Find Us
 
-## Join the RCOS Chatroom
+# Join the RCOS Chatroom
  * https://chat.rcos.io/rcos/channels/town-square
  
 # Check out our Rensselaer Center for Open Source page
