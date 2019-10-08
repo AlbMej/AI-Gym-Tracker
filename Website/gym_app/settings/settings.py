@@ -1,7 +1,6 @@
-try: 
+try:
     from .secrets import *
-    from .database import *
-except ImportError: 
+except ImportError:
     print("Error: make a local version of secrets.py containing the SECRET KEY and DATABASE credentials")
 
 """
@@ -100,7 +99,7 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-## Moved database credentials to a local file 
+## Moved database credentials to a local file
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
