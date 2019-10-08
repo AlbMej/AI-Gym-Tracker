@@ -27,4 +27,4 @@ DATABASES = {
     )
 }
 DATABASES = { 'default': dj_database_url.config() }
-ALLOWED_HOSTS = ['ai-gym-tracker.herokuapp.com']
+ALLOWED_HOSTS = ['rcos-gym-tracker.herokuapp.com']

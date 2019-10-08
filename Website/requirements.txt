@@ -1,9 +1,0 @@
-django
-django-bootstrap4
-django-crispy-forms
-dj-database-url
-dj-static
-python-decouple
-psycopg2
-gunicorn
-whitenoise
