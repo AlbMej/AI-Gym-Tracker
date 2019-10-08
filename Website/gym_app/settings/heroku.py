@@ -26,6 +26,5 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
-
 DATABASES = { 'default': dj_database_url.config() }
-ALLOWED_HOSTS = ['albmej-loan-application.herokuapp.com']
+ALLOWED_HOSTS = ['ai-gym-tracker.herokuapp.com']
