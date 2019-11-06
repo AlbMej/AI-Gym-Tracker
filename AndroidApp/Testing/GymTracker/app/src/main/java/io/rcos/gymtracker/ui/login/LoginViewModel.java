@@ -4,7 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import android.os.AsyncTask;
 import android.util.Patterns;
+
+import java.net.HttpURLConnection;
 
 import io.rcos.gymtracker.data.LoginRepository;
 import io.rcos.gymtracker.data.Result;
@@ -67,4 +70,7 @@ public class LoginViewModel extends ViewModel {
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
     }
+
+
+
 }
