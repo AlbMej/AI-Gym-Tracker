@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-import dj_database_url
 from decouple import config
 import os
 
@@ -25,6 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ####################################################################
 
 # SECRET_KEY = os.environ['SECRET_KEY']  <-- Use this if you store your secret keys as an environment variable (EX. export SECRET_KEY="mYsEcReTkEy")
+# AIPSA_USER = os.environ['AIPSA_USER']  #<-- Similarly, use this if you store your AIPSA/Mongo username as an environment variable
+# AIPSA_PASS = os.environ['AIPSA_PASS']  #<-- Same thing for password
 
 ###################################################################
 # SECURITY WARNING: don't run with debug turned on in production! #
@@ -96,6 +97,16 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 ###################################################################
 #          Moved database credentials to a local file             #
 ###################################################################
+
+DATABASES = {
+        'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'AIPSA',
+        'HOST': 'mongodb+srv://'+AIPSA_USER+':'+AIPSA_PASS+'@aipsa-cftw0.mongodb.net/test?retryWrites=true',
+        'USER': AIPSA_USER,
+        'PASSWORD': AIPSA_PASS,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
