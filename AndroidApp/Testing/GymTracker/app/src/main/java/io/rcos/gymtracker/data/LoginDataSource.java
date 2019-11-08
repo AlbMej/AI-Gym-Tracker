@@ -7,6 +7,10 @@ import io.rcos.gymtracker.MainActivity;
 import io.rcos.gymtracker.data.model.LoggedInUser;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,6 +45,8 @@ public class LoginDataSource {
         protected String doInBackground(String... strings) {
             String username = strings[0];
             String password = strings[1];
+            String urlLoginParams = "";
+            String responseStr = "";
             URL url = null;
             try {
                 url = new URL(Vars.LOGIN_URL);
@@ -49,13 +55,44 @@ public class LoginDataSource {
             }
             HttpURLConnection LoginConnection = null;
             try {
+                // Setting up the connection
                 LoginConnection = (HttpURLConnection) url.openConnection();
                 LoginConnection.setRequestMethod("POST");
-                
+                Log.d(Vars.DTAG_Login,"Preparing to send data");
+                OutputStreamWriter loginWriter = new OutputStreamWriter(LoginConnection.getOutputStream());
+                loginWriter.write(urlLoginParams);
+                loginWriter.flush();
+                loginWriter.close();
+
+                //Creates the connection and sends the data
+                LoginConnection.connect();
+                if (LoginConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                    //if connection accepted
+                    InputStream responseInStream = LoginConnection.getInputStream();
+                    int charCode = 0;
+                    while (charCode != 1) {
+                        charCode = responseInStream.read();
+                        if (charCode == -1) {
+                            Log.d(Vars.DTAG_Login,"Input Reading Complete");
+                            break;
+                        } else
+                            responseStr += (char) charCode;
+                    }
+                }
+                else{
+                    Log.e(Vars.ETAG_LOGIN_CONNECTION,"Login failed\n" + LoginConnection.getResponseCode() + "\n" + LoginConnection.getResponseMessage());
+                }
+
+
             } catch (IOException | NullPointerException ex) {
                 Log.e(Vars.ETAG_LOGIN_CONNECTION, ex.getMessage());
             }
-            return null;
+            return responseStr;
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            super.onPostExecute(response);
         }
     }
 }
