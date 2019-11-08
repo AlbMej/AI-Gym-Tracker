@@ -1,5 +1,6 @@
 package io.rcos.gymtracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -10,11 +11,19 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import io.rcos.gymtracker.ui.login.LoginActivity;
+
 public class BottomNav extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startActivity(new Intent(BottomNav.this, LoginActivity.class));
+        setUpUI();
+
+    }
+
+    void setUpUI(){
         setContentView(R.layout.activity_bottom_nav);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
