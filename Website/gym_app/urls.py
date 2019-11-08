@@ -28,6 +28,6 @@ urlpatterns = [
 
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path(r'^api-auth/',include('rest_framework.urls') ),
+    path(r'api-auth/',views.TestAuthView.as_view(), name='TestAuth'),
 
 ]

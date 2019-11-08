@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authentication'
+    'rest_framework.authentication',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 ###################################################################
-#          Moved database credentials to a local file             # 
+#          Moved database credentials to a local file             #
 ###################################################################
 
 # Password validation
