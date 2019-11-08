@@ -24,8 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ####################################################################
 
 # SECRET_KEY = os.environ['SECRET_KEY']  <-- Use this if you store your secret keys as an environment variable (EX. export SECRET_KEY="mYsEcReTkEy")
-AIPSA_USER = os.environ['AIPSA_USER']  #<-- Similarly, use this if you store your AIPSA/Mongo username as an environment variable
-AIPSA_PASS = os.environ['AIPSA_PASS']  #<-- Same thing for password
+# AIPSA_USER = os.environ['AIPSA_USER']  #<-- Similarly, use this if you store your AIPSA/Mongo username as an environment variable
+# AIPSA_PASS = os.environ['AIPSA_PASS']  #<-- Same thing for password
 
 ###################################################################
 # SECURITY WARNING: don't run with debug turned on in production! #
