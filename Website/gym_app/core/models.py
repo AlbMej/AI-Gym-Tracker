@@ -1,5 +1,4 @@
-from django.db import models
-from django import forms
+from djongo import models
 
 # Create your models here.
 
@@ -26,6 +25,12 @@ class Loan(models.Model):
     amount_required = models.IntegerField() #label = 'Amount required'
     business_type = models.CharField(max_length=3, choices=BUSINESS_TYPES)
     years_in_business = models.IntegerField() #label='Years in business'
-    other = models.CharField(max_length=64) 
+    other = models.CharField(max_length=64)
 
     agree = models.BooleanField()  #required=True
+
+#A test model, going to experiment to see how we can add these to a database
+class Exercise(models.Model):
+    exID = models.IntegerField()
+    name = models.CharField(max_length=64)
+    primary = models.CharField(max_length=32)

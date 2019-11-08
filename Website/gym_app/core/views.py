@@ -7,6 +7,11 @@ from django.views.generic import FormView, TemplateView
 from django.urls import reverse_lazy
 from .forms import LoanFieldForm, CustomFieldForm
 from django.http import HttpResponse
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated  # <-- Here
+
 # Create your views here.
 
 def home(request):
@@ -40,6 +45,13 @@ class DeniedView(TemplateView):
 
 class PreapprovedView(TemplateView):
     template_name = 'preapproved.html'
+
+class TestAuthView(APIView):
+    permission_classes = (IsAuthenticated,)             # <-- And here
+
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return Response(content)
 
 @login_required
 def submit_form(request):
