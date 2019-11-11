@@ -1,0 +1,28 @@
+body{
+    background-color: white;
+    font-size: 25px;
+    padding: 5px;
+}
+
+table, td{
+    table-layout: fixed;
+    text-align: center;
+    font-size: 17px;
+}
+
+td:hover{
+    background: teal;
+}
+
+td a{
+    margin-bottom: 2px;
+    align-items: center;
+    display: block;
+    width: 100%;
+    line-height: 200%;
+    background-color: #7E8F7C;
+}
+th{
+    font-size: 20px;
+    text-align: center;
+}

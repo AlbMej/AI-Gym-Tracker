@@ -10,3 +10,5 @@ gunicorn
 whitenoise
 Unipath
 djongo
+django-weeklycalendar
+python-dateutil
