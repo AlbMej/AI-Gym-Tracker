@@ -1,16 +1,19 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView, TemplateView
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from .forms import LoanFieldForm, CustomFieldForm
-from django.http import HttpResponse
-
+from django.views.generic import FormView, TemplateView
+from gym_app.core.models import Exercise
+from rest_framework import viewsets
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated  # <-- Here
+from rest_framework.response import Response
+from gym_app.core.serializers import UserSerializer
+from .forms import CustomFieldForm
+from rest_framework import permissions
+
 
 # Create your views here.
 
@@ -19,6 +22,7 @@ def home(request):
     return render(request, 'home.html', {
         'count': count
     })
+
 
 def signup(request):
     if request.method == 'POST':
@@ -32,26 +36,24 @@ def signup(request):
         'form': form
     })
 
+
 class LoanForm(LoginRequiredMixin, FormView):
     form_class = CustomFieldForm
     success_url = reverse_lazy('success')
     template_name = 'form.html'
 
+
 class SuccessView(TemplateView):
     template_name = 'success.html'
+
 
 class DeniedView(TemplateView):
     template_name = 'denied.html'
 
+
 class PreapprovedView(TemplateView):
     template_name = 'preapproved.html'
 
-class TestAuthView(APIView):
-    permission_classes = (IsAuthenticated,)             # <-- And here
-
-    def get(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
 
 @login_required
 def submit_form(request):
@@ -72,4 +74,19 @@ def submit_form(request):
     else:
         form = CustomFieldForm()
 
-    return render(request, "form.html", {'form':CustomFieldForm()})
+    return render(request, "form.html", {
+        'form': CustomFieldForm()
+    })
+
+
+class TestAuthView(APIView):
+    permission_classes = [permissions.AllowAny]
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    def get(self, request):
+        print("Help?")
+        content = {
+            'user': request.user.id,  # `django.contrib.auth.User` instance.
+            'auth': request.auth,  # None
+        }
+        return Response(content)
