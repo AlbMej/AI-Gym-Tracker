@@ -95,13 +95,13 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 
 DATABASES = {
 
-    # 'mongo': {
-    #     'ENGINE'  : 'djongo',
-    #     'NAME'    : 'AIPSA',
-    #     'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
-    #     'USER'    : AIPSA_USER,
-    #     'PASSWORD': AIPSA_PASS,
-    # }
+    'mongo': {
+        'ENGINE'  : 'djongo',
+        'NAME'    : 'AIPSA',
+        'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
+        'USER'    : AIPSA_USER,
+        'PASSWORD': AIPSA_PASS,
+    }
 }
 DATABASES['default'] = dj_database_url.config()
 
