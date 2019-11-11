@@ -31,9 +31,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production! #
 ###################################################################
 DEBUG = False
-SECRET_KEY = os.environ['SECRET_KEY']
-AIPSA_USER = "TEST"
-AIPSA_PASS = "TEST"
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 LOGIN_REDIRECT_URL = 'home'
@@ -97,13 +94,13 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 
 DATABASES = {
 
-    # 'mongo': {
-    #     'ENGINE'  : 'djongo',
-    #     'NAME'    : 'AIPSA',
-    #     'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
-    #     'USER'    : AIPSA_USER,
-    #     'PASSWORD': AIPSA_PASS,
-    # }
+    'mongo': {
+        'ENGINE'  : 'djongo',
+        'NAME'    : 'AIPSA',
+        'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
+        'USER'    : AIPSA_USER,
+        'PASSWORD': AIPSA_PASS,
+    }
 }
 DATABASES['default'] = dj_database_url.config()
 
@@ -121,8 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [{
 }, ]
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication',],
-    # 'DEFAULT_PERMISSION_CLASSES'    : ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication',],
+    'DEFAULT_PERMISSION_CLASSES'    : ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
 }
 
 # Internationalization
