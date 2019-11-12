@@ -1,5 +1,6 @@
 package io.rcos.gymtracker;
 
+import android.accounts.AbstractAccountAuthenticator;
 import android.content.Intent;
 import android.os.Bundle;
 
