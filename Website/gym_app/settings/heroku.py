@@ -20,6 +20,6 @@ STATICFILES_DIRS = (
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 SECRET_KEY = config('SECRET_KEY')
-# AIPSA_USER = config('AIPSA_USER')
-# AIPSA_PASS = config('AIPSA_PASS')
+AIPSA_USER = config('AIPSA_USER')
+AIPSA_PASS = config('AIPSA_PASS')
 ALLOWED_HOSTS = ['rcos-gym-tracker.herokuapp.com', '127.0.0.1']
