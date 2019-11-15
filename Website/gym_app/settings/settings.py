@@ -96,8 +96,7 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 ###################################################################
 
 DATABASES = {
-
-    'mongo': {
+    'default': {
         'ENGINE'  : 'djongo',
         'NAME'    : 'AIPSA',
         'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
