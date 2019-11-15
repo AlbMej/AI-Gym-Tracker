@@ -2,16 +2,16 @@
 
 {% block content %}
   <h2>Homepage</h2>
-  <p>Welcome to My Site, 
+  <p>Welcome to GymTracker,
   {% if user.is_authenticated %}
   {{ user.username }}!
   <p>
-  Click on the Loan Application tab to begin your online application. 
+  Click on the Loan Application tab to begin your online application.
   </p>
   {% else %}
-  visitor!	
+  visitor!
   <p>
-  Create an account or login to start your loan application.
+  Create an account or login to start tracking workouts.
   </p>
   {% endif %}</p>
   <p>

@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'bootstrap4',
     'crispy_forms',
-    'Calendar',
+    # 'Calendar',
 
     'gym_app.core',
     'gym_app',
