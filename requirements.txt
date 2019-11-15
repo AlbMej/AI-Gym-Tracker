@@ -12,3 +12,4 @@ Unipath
 djongo
 django-weeklycalendar
 python-dateutil
+dnspython
