@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
 
-#import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'bootstrap4',
     'crispy_forms',
-    'Calendar',
+    # 'Calendar',
 
     'gym_app.core',
     'gym_app',
@@ -93,17 +93,8 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 #          Moved database credentials to a local file             #
 ###################################################################
 
-DATABASES = {
-
-    'mongo': {
-        'ENGINE'  : 'djongo',
-        'NAME'    : 'AIPSA',
-        'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
-        'USER'    : AIPSA_USER,
-        'PASSWORD': AIPSA_PASS,
-    }
-}
-#DATABASES['default'] = dj_database_url.config()
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

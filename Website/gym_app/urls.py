@@ -34,6 +34,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path("test-auth/",views.TestAuthView.as_view()),
-    path('calendar/', include("Calendar.urls"))
+    # path('calendar/', include("Calendar.urls"))
 
 ]

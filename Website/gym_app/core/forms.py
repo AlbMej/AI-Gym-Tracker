@@ -8,21 +8,22 @@ class LoanFieldForm(forms.ModelForm):
 
     class Meta:
         model = Loan
-        fields = ('first_name', 'last_name', 'email', 'phone', 
-                'address', 'city', 'state', 'zip_code', 'amount_required', 
+        fields = ('first_name', 'last_name', 'email', 'phone',
+                'address', 'city', 'state', 'zip_code', 'amount_required',
                 'business_type', 'years_in_business', 'other', 'agree')
 
         BUSINESS_TYPE = (
                 ('', 'Choose...'),
-                ('FT', 'Food Truck'),
-                ('CON', 'Construction'),
+                ('C', 'Cardio'),
+                ('W', 'Weights'),
+                ('S', 'Strength'),
                 ('OTH', 'Other')
             )
 
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'Ex. Alberto'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Ex. Mejia'}), 
-            'email': forms.TextInput(attrs={'placeholder': 'Ex. me@caminofinancial.com'}), 
+            'last_name': forms.TextInput(attrs={'placeholder': 'Ex. Mejia'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Ex. me@caminofinancial.com'}),
             'phone': forms.TextInput(attrs={'placeholder': 'Ex. 914 123 4567'}),
             'address': forms.TextInput(attrs={'placeholder': 'Apartment, studio, or floor, 1234 Main St'}),
             'city': forms.TextInput(attrs={'placeholder': 'Yonkers'}),
@@ -39,7 +40,7 @@ class CustomCheckbox(Field):
 class CustomFieldForm(LoanFieldForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['agree'].required = True 
+        self.fields['agree'].required = True
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
