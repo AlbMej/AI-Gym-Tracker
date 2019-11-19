@@ -130,3 +130,6 @@ class ExerciseTestCase(TestCase):
         self.exercise.save()
         new_count = Exercise.objects.count()
         self.assertNotEqual(old_count, new_count)
+
+        retrieved = Exercise.objects.get(exID=0)
+        self.assertEqual(retrieved.name, "benchpress (test)")
