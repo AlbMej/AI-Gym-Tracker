@@ -33,7 +33,8 @@ class Loan(models.Model):
 class Exercise(models.Model):
     exID = models.IntegerField()
     name = models.CharField(max_length=64)
-    primary = models.CharField(max_length=32)
+    primary = models.CharField(max_length=64)
+    secondary = models.CharField(max_length=256)
 
 class User(models.Model):
     uID = models.IntegerField()

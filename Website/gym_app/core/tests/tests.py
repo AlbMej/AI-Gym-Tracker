@@ -1,12 +1,12 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy, reverse
-from .models import Loan
+from .models import Loan, Exercise
 # Create your tests here.
 
 class TestUserSignUp(TestCase):
     """
-    My signup view uses the UserCreationForm which is part of the Django Core 
+    My signup view uses the UserCreationForm which is part of the Django Core
     (it is already tested with test cases ensuring length validators, common password, numeric password, user already exists, etc.)
     So I am only testing if a valid sign up populates the database correctly
     """
@@ -48,7 +48,7 @@ class TestUserLogIn(TestCase):
         self.assertTrue(response.context['user'].is_authenticated)
 
 
-class TestHiddenPages(TestCase): 
+class TestHiddenPages(TestCase):
     """
     Test to see if the user is prevented from accessing the loan application page before loggin in
     """
@@ -87,7 +87,7 @@ class ModelTestCase(TestCase):
         self.years_in_bus = '3'
         self.other = 'N/A'
         self.agree = True
-        
+
         self.loan = Loan(first_name=self.loanee_first_name,
             last_name=self.loanee_last_name,
             email=self.email,
@@ -108,4 +108,25 @@ class ModelTestCase(TestCase):
         old_count = Loan.objects.count()
         self.loan.save()
         new_count = Loan.objects.count()
+        self.assertNotEqual(old_count, new_count)
+
+class ExerciseTestCase(TestCase):
+    """This class defines the test suite for the Exercise model"""
+    def setUp(self):
+        """Define the test client and test variables."""
+        self.exercise_id = 0
+        self.exercise_name = "benchpress (test)"
+        self.primary_muscle = "chest"
+        self.secondary_muscles = "triceps, biceps"
+
+        self.exercise = Exercise(exID=self.exercise_id,
+            name=self.exercise_name,
+            primary=self.primary_muscle,
+            secondary=self.secondary_muscles)
+
+    def test_model_create_exercise(self):
+        """Test that the exercise is properly saved"""
+        old_count = Exercise.objects.count()
+        self.exercise.save()
+        new_count = Exercise.objects.count()
         self.assertNotEqual(old_count, new_count)
