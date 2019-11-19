@@ -1,7 +1,9 @@
+#import os
+#os.chdir("..")
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy, reverse
-from .models import Loan, Exercise
+from gym_app.core.models import Loan, Exercise
 # Create your tests here.
 
 class TestUserSignUp(TestCase):
