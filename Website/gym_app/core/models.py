@@ -71,15 +71,13 @@ class LogYear(models.Model):
         model_container=LogMonth,
     )
 
-class Log(models.Model):
-    years = models.ArrayModelField(
-        model_container=LogYear,
-    )
-
 class User(models.Model):
     uID = models.IntegerField()
     username = models.CharField(max_length=32)
     email = models.CharField(max_length=64)
     routines = models.ArrayModelField(
         model_container=Routine,
+    )
+    log = models.ArrayModelField(
+        model_container=LogYear,
     )
