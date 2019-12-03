@@ -13,8 +13,7 @@ from rest_framework.response import Response
 from gym_app.core.serializers import UserSerializer
 from .forms import CustomFieldForm
 from rest_framework import permissions
-
-
+from .api_auth import ApiAuth
 # Create your views here.
 
 def home(request):
@@ -79,14 +78,13 @@ def submit_form(request):
     })
 
 
-class TestAuthView(APIView):
-    permission_classes = [permissions.AllowAny]
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    def get(self, request):
-        print("Help?")
-        content = {
-            'user': request.user.id,  # `django.contrib.auth.User` instance.
-            'auth': request.auth,  # None
-        }
-        return Response(content)
+@ApiAuth
+def api_hello(request, username):
+    """
+    """
+    user = models.User.objects.get(username=username)
+    name = "{0} {1}".format(user.first_name, user.last_name)
+    data = {"msg": "Hello {}".format(name)}
+
+    data_json = json.dumps(data)
+    return HttpResponse(data_json, content_type='application/json')

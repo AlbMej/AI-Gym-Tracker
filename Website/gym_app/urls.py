@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from gym_app.core import views
 from rest_framework import routers
+from .core.api_auth import ApiAuth
 
-
-router = routers.DefaultRouter()
-router.register(r'test-auth', views.TestAuthView,basename="TestAuth")
+# router = routers.DefaultRouter()
+# router.register(r'test-auth', views.TestAuthView,basename="TestAuth")
 urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', views.signup, name='signup'),
@@ -33,7 +33,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path("test-auth/",views.TestAuthView.as_view()),
+    path("test-auth/",views.api_hello),
     # path('calendar/', include("Calendar.urls"))
 
 ]
