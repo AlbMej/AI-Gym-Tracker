@@ -133,3 +133,27 @@ class ExerciseTestCase(TestCase):
 
         retrieved = Exercise.objects.get(exID=0)
         self.assertEqual(retrieved.name, "benchpress (test)")
+
+class RoutineTestCase(TestCase):
+    """This class defines test suite for the Routine model"""
+    def setUp(self):
+        """Define the test client and test variables."""
+        self.bench_id = 0
+        self.bench_name = "benchpress (test)"
+        self.bench_primary = "chest"
+        self.bench_secondary = "triceps, biceps"
+
+        self.exercise1 = Exercise(exID=self.bench_id,
+            name=self.bench_name,
+            primary=self.bench_primary,
+            secondary=self.bench_secondary)
+
+        self.curls_id = 1
+        self.curls_name = "curls (test)"
+        self.curls_primary = "biceps"
+        self.curls_secondary = "forearms"
+
+        self.exercise2 = Exercise(exID=self.curls_id,
+            name=self.curls_name,
+            primary=self.curls_primary,
+            secondary=self.curls_secondary)
