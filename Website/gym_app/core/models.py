@@ -52,14 +52,17 @@ class LogDay(models.Model):
     month = models.IntegerField()           #Month represented by integer 1-12
     year = models.IntegerField()            #Year (i.e. 2019)
     routines = ArrayField(
-        models.CharField(max_length=64),
+        models.CharField(max_length=64),size=8  #names of routines completed
+    )
+    exercises = ArrayModelField(
+        model_container=RoutineExercise,        #names of individual exercises
     )
 
 class LogMonth(models.Model):
     month = models.IntegerField()           #Month represented by integer 1-12
     year = models.IntegerField()            #Year (i.e. 2019)
     days = models.ArrayModelField(
-        model_container=LogDay
+        model_container=LogDay,
     )
 
 class LogYear(models.Model):
