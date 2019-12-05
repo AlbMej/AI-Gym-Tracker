@@ -1,12 +1,13 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy, reverse
-from .models import Loan
+from gym_app.core.models import *
+import datetime as dt
 # Create your tests here.
 
 class TestUserSignUp(TestCase):
     """
-    My signup view uses the UserCreationForm which is part of the Django Core 
+    My signup view uses the UserCreationForm which is part of the Django Core
     (it is already tested with test cases ensuring length validators, common password, numeric password, user already exists, etc.)
     So I am only testing if a valid sign up populates the database correctly
     """
@@ -48,7 +49,7 @@ class TestUserLogIn(TestCase):
         self.assertTrue(response.context['user'].is_authenticated)
 
 
-class TestHiddenPages(TestCase): 
+class TestHiddenPages(TestCase):
     """
     Test to see if the user is prevented from accessing the loan application page before loggin in
     """
@@ -87,7 +88,7 @@ class ModelTestCase(TestCase):
         self.years_in_bus = '3'
         self.other = 'N/A'
         self.agree = True
-        
+
         self.loan = Loan(first_name=self.loanee_first_name,
             last_name=self.loanee_last_name,
             email=self.email,
@@ -109,3 +110,85 @@ class ModelTestCase(TestCase):
         self.loan.save()
         new_count = Loan.objects.count()
         self.assertNotEqual(old_count, new_count)
+
+class ExerciseTestCase(TestCase):
+    """This class defines a basic test suite for the Exercise model"""
+    def setUp(self):
+        """Define the test client and test variables."""
+        self.exercise_id = 0
+        self.exercise_name = "benchpress (test)"
+        self.primary_muscle = "chest"
+        self.secondary_muscles = "triceps, biceps"
+
+        self.exercise = Exercise(exID=self.exercise_id,
+            name=self.exercise_name,
+            primary=self.primary_muscle,
+            secondary=self.secondary_muscles)
+
+    def test_model_create_exercise(self):
+        """Test that the exercise is properly saved"""
+        old_count = Exercise.objects.count()
+        self.exercise.save()
+        new_count = Exercise.objects.count()
+        self.assertNotEqual(old_count, new_count)
+
+        retrieved = Exercise.objects.get(exID=0)
+        self.assertEqual(retrieved.name, "benchpress (test)")
+
+class UserRoutineLogTestCase(TestCase):
+    """This class defines the test suite for the models User, Routine, Log*, and their contained models"""
+    def setUp(self):
+        """Define the test client and test variables."""
+        self.bench_id = 0
+        self.bench_name = "benchpress (test)"
+        self.bench_primary = "chest"
+        self.bench_secondary = "triceps, biceps"
+
+        self.exercise1 = Exercise(exID=self.bench_id,
+            name=self.bench_name,
+            primary=self.bench_primary,
+            secondary=self.bench_secondary)
+        self.exercise1.save()
+
+        self.curls_id = 1
+        self.curls_name = "curls (test)"
+        self.curls_primary = "biceps"
+        self.curls_secondary = "forearms"
+
+        self.exercise2 = Exercise(exID=self.curls_id,
+            name=self.curls_name,
+            primary=self.curls_primary,
+            secondary=self.curls_secondary)
+        self.exercise2.save()
+
+        self.routineEx1 = RoutineExercise(exercise=self.exercise1,sets=5,reps=5)
+        self.routineEx2 = RoutineExercise(exercise=self.exercise2,sets=3,reps=8)
+
+        self.routineEx1.save()
+        self.routineEx2.save()
+
+        self.name = "big arms"
+        self.routine = Routine(routineName=self.name, exercises=[])
+        self.routine.save()
+        self.routine.exercises.append(self.routineEx1)
+        self.routine.exercises.append(self.routineEx2)
+
+        #self.user = User(uID=0,username="rcos_is_fun",email="turnew2@rpi.edu",routines=[],log=[])
+        #self.user.save()
+        #self.user.routines.append(self.routine)
+
+        #date = dt.datetime(2019, 12, 25, 9, 9, 9, 0)
+
+    def test_model_info_RoutineExercise(self):
+        self.assertEqual(self.routineEx1.sets, 5)
+        self.assertEqual(self.routineEx2.reps, 8)
+        self.assertEqual(self.routineEx1.exercise.exID, 0)
+        self.assertEqual(self.routineEx2.exercise.exID, 1)
+
+    def test_model_info_Routine(self):
+        self.assertEqual(self.routine.routineName, "big arms")
+
+    def test_model_access_array_Routine(self):
+        rEx = self.routine.exercises[0]
+        ex = rEx.exercise
+        self.assertEqual(ex.exID, 0)
