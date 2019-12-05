@@ -1,7 +1,8 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy, reverse
-from gym_app.core.models import Loan, Exercise
+from gym_app.core.models import *
+import datetime as dt
 # Create your tests here.
 
 class TestUserSignUp(TestCase):
@@ -111,7 +112,7 @@ class ModelTestCase(TestCase):
         self.assertNotEqual(old_count, new_count)
 
 class ExerciseTestCase(TestCase):
-    """This class defines the test suite for the Exercise model"""
+    """This class defines a basic test suite for the Exercise model"""
     def setUp(self):
         """Define the test client and test variables."""
         self.exercise_id = 0
@@ -134,8 +135,8 @@ class ExerciseTestCase(TestCase):
         retrieved = Exercise.objects.get(exID=0)
         self.assertEqual(retrieved.name, "benchpress (test)")
 
-class RoutineTestCase(TestCase):
-    """This class defines test suite for the Routine model"""
+class UserRoutineLogTestCase(TestCase):
+    """This class defines the test suite for the models User, Routine, Log*, and their contained models"""
     def setUp(self):
         """Define the test client and test variables."""
         self.bench_id = 0
@@ -147,6 +148,7 @@ class RoutineTestCase(TestCase):
             name=self.bench_name,
             primary=self.bench_primary,
             secondary=self.bench_secondary)
+        self.exercise1.save()
 
         self.curls_id = 1
         self.curls_name = "curls (test)"
@@ -157,3 +159,36 @@ class RoutineTestCase(TestCase):
             name=self.curls_name,
             primary=self.curls_primary,
             secondary=self.curls_secondary)
+        self.exercise2.save()
+
+        self.routineEx1 = RoutineExercise(exercise=self.exercise1,sets=5,reps=5)
+        self.routineEx2 = RoutineExercise(exercise=self.exercise2,sets=3,reps=8)
+
+        self.routineEx1.save()
+        self.routineEx2.save()
+
+        self.name = "big arms"
+        self.routine = Routine(routineName=self.name, exercises=[])
+        self.routine.save()
+        self.routine.exercises.append(self.routineEx1)
+        self.routine.exercises.append(self.routineEx2)
+
+        #self.user = User(uID=0,username="rcos_is_fun",email="turnew2@rpi.edu",routines=[],log=[])
+        #self.user.save()
+        #self.user.routines.append(self.routine)
+
+        #date = dt.datetime(2019, 12, 25, 9, 9, 9, 0)
+
+    def test_model_info_RoutineExercise(self):
+        self.assertEqual(self.routineEx1.sets, 5)
+        self.assertEqual(self.routineEx2.reps, 8)
+        self.assertEqual(self.routineEx1.exercise.exID, 0)
+        self.assertEqual(self.routineEx2.exercise.exID, 1)
+
+    def test_model_info_Routine(self):
+        self.assertEqual(self.routine.routineName, "big arms")
+
+    def test_model_access_array_Routine(self):
+        rEx = self.routine.exercises[0]
+        ex = rEx.exercise
+        self.assertEqual(ex.exID, 0)
