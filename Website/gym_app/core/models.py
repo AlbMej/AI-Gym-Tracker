@@ -47,15 +47,16 @@ class Routine(models.Model):
         model_container=RoutineExercise,
     )
 
+class LogEntry(models.Model):
+    name = models.CharField(max_length=64)  #name of exercise or routine
+    time = models.DateField()               #time the entry was completed
+
 class LogDay(models.Model):
     day = models.IntegerField()             #Day of the month (1-31 typically)
     month = models.IntegerField()           #Month represented by integer 1-12
     year = models.IntegerField()            #Year (i.e. 2019)
-    routines = ArrayField(
-        models.CharField(max_length=64),size=8  #names of routines completed
-    )
-    exercises = ArrayModelField(
-        model_container=RoutineExercise,        #names of individual exercises
+    entries = ArrayModelField(
+        model_container=LogEntry,           #names of exercises/routines
     )
 
 class LogMonth(models.Model):
