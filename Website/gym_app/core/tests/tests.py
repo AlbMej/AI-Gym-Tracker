@@ -149,6 +149,7 @@ class UserRoutineLogTestCase(TestCase):
             primary=self.bench_primary,
             secondary=self.bench_secondary)
         self.exercise1.save()
+        #create and save an example benchpress exercise
 
         self.curls_id = 1
         self.curls_name = "curls (test)"
@@ -160,36 +161,45 @@ class UserRoutineLogTestCase(TestCase):
             primary=self.curls_primary,
             secondary=self.curls_secondary)
         self.exercise2.save()
+        #create and save an example curls exercise
 
-        self.routineEx1 = RoutineExercise(exercise=self.exercise1,sets=5,reps=5)
-        self.routineEx2 = RoutineExercise(exercise=self.exercise2,sets=3,reps=8)
-
+        self.routineEx1 = RoutineExercise(exercise=self.exercise1,sets=5,reps=5,value=165)
+        self.routineEx2 = RoutineExercise(exercise=self.exercise2,sets=3,reps=8,value=45)
         self.routineEx1.save()
         self.routineEx2.save()
+        #create and save RoutineExercise's built from the exercises saved above
+        #holds an exercise, but also tracks sets and reps
 
         self.name = "big arms"
         self.routine = Routine(routineName=self.name, exercises=[])
         self.routine.save()
         self.routine.exercises.append(self.routineEx1)
         self.routine.exercises.append(self.routineEx2)
+        #create and save a routine containing the two RoutineExercise's above
 
         self.user = User(uID=0,username="rcos_is_fun",email="turnew2@rpi.edu",routines=[],log=[])
         self.user.save()
         self.user.routines.append(self.routine)
+        #create and save a user containg the above routine
 
         self.datetime1 = dt.datetime(2019, 12, 25, 8, 8, 8, 0)
         self.datetime2 = dt.datetime(2019, 12, 25, 9, 9, 9, 0)
+        #create timestamps for entries we'll create. happy holidays
 
         entry1 = LogEntry(name=self.routine.routineName, time=self.datetime1)
         entry2 = LogEntry(name=self.routineEx1.exercise.name, time=self.datetime2)
         entry1.save()
         entry2.save()
+        #create and save LogEntry's with the above datetime's
+        #LogEntry's just store a name, doesn't matter if it's a routine or exercise
+
         day = LogDay(day=25,month=12,year=2019,entries=[entry1,entry2])
         month = LogMonth(month=12,year=2019,days=[day])
         self.year = LogYear(year=2019,months=[month])
         day.save()
         month.save()
         self.year.save()
+        #create and save log containers for year, month, and day
 
     def test_model_info_RoutineExercise(self):
         self.assertEqual(self.routineEx1.sets, 5)

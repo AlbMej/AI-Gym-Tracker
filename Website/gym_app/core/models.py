@@ -40,6 +40,8 @@ class RoutineExercise(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     sets = models.IntegerField()
     reps = models.IntegerField()
+    value = models.IntegerField()
+    #value represents weight, time, or whatever other metric to measure
 
 class Routine(models.Model):
     routineName = models.CharField(max_length=64)
