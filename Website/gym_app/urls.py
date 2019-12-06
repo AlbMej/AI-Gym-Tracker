@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from gym_app.core import views
 from rest_framework import routers
-
+from .core.api_auth import ApiAuth
 
 router = routers.DefaultRouter()
 router.register(r'test-auth', views.TestAuthView,basename="TestAuth")

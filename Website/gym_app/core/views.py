@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
-from gym_app.core.models import Exercise
+from gym_app.core.models import Exercise,User
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated  # <-- Here
@@ -13,8 +13,7 @@ from rest_framework.response import Response
 from gym_app.core.serializers import UserSerializer
 from .forms import CustomFieldForm
 from rest_framework import permissions
-
-
+from .api_auth import ApiAuth
 # Create your views here.
 
 def home(request):
@@ -78,13 +77,24 @@ def submit_form(request):
         'form': CustomFieldForm()
     })
 
-
+"""
+Default template for using djangorestframework.
+Change permission_classes to reflect what type of authentiaction you want.
+Use APIView to have the predrawn classes from djangorestframework
+Return what you want in content.
+I am still trying to figure out how to query djongo DB.
+"""
 class TestAuthView(APIView):
     permission_classes = [permissions.AllowAny]
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
     def get(self, request):
-        print("Help?")
+        try:
+            # Do some query
+            print(User.objects.get(username="test_gabe"))
+        except Exception as e:
+            # respond with error msg
+            return Response(data = {'error': 'Invalid authorization token provided'}, status=403)
+
+        # Content to respond with using the api
         content = {
             'user': request.user.id,  # `django.contrib.auth.User` instance.
             'auth': request.auth,  # None
