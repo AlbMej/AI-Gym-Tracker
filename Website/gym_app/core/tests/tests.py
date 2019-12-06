@@ -173,11 +173,23 @@ class UserRoutineLogTestCase(TestCase):
         self.routine.exercises.append(self.routineEx1)
         self.routine.exercises.append(self.routineEx2)
 
-        #self.user = User(uID=0,username="rcos_is_fun",email="turnew2@rpi.edu",routines=[],log=[])
-        #self.user.save()
-        #self.user.routines.append(self.routine)
+        self.user = User(uID=0,username="rcos_is_fun",email="turnew2@rpi.edu",routines=[],log=[])
+        self.user.save()
+        self.user.routines.append(self.routine)
 
-        #date = dt.datetime(2019, 12, 25, 9, 9, 9, 0)
+        self.datetime1 = dt.datetime(2019, 12, 25, 8, 8, 8, 0)
+        self.datetime2 = dt.datetime(2019, 12, 25, 9, 9, 9, 0)
+
+        entry1 = LogEntry(name=self.routine.routineName, time=self.datetime1)
+        entry2 = LogEntry(name=self.routineEx1.exercise.name, time=self.datetime2)
+        entry1.save()
+        entry2.save()
+        day = LogDay(day=25,month=12,year=2019,entries=[entry1,entry2])
+        month = LogMonth(month=12,year=2019,days=[day])
+        self.year = LogYear(year=2019,months=[month])
+        day.save()
+        month.save()
+        self.year.save()
 
     def test_model_info_RoutineExercise(self):
         self.assertEqual(self.routineEx1.sets, 5)
@@ -192,3 +204,24 @@ class UserRoutineLogTestCase(TestCase):
         rEx = self.routine.exercises[0]
         ex = rEx.exercise
         self.assertEqual(ex.exID, 0)
+
+    def test_model_info_LogYear(self):
+        yearInt = self.year.year
+        self.assertEqual(yearInt, 2019)
+
+    def test_model_accesses_LogYear(self):
+        logEntry = self.year.months[0].days[0].entries[0]
+        self.assertEqual(logEntry.name, "big arms")
+
+    def test_user_query(self):
+        #good example of djongo query
+        userQuerySet = User.objects.filter(username="rcos_is_fun")
+        self.assertEqual(len(userQuerySet), 1)
+        user = userQuerySet[0]
+        self.assertEqual(user.email, "turnew2@rpi.edu")
+
+    def test_single_entry_query(self):
+        entryQuerySet = LogEntry.objects.filter(name="big arms")
+        self.assertEqual(len(entryQuerySet), 1)
+        entry = entryQuerySet[0]
+        self.assertEqual(entry.time, self.datetime1)
