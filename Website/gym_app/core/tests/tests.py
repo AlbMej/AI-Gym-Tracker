@@ -220,8 +220,11 @@ class UserRoutineLogTestCase(TestCase):
         user = userQuerySet[0]
         self.assertEqual(user.email, "turnew2@rpi.edu")
 
-    def test_single_entry_query(self):
-        entryQuerySet = LogEntry.objects.filter(name="big arms")
-        self.assertEqual(len(entryQuerySet), 1)
-        entry = entryQuerySet[0]
-        self.assertEqual(entry.time, self.datetime1)
+    def test_multiple_entries_query(self):
+        entryQuerySet = LogEntry.objects.all()
+        self.assertEqual(len(entryQuerySet), 2)
+        entryNames = set()
+        for e in entryQuerySet:
+            entryNames.add(e.name)
+        self.assertTrue("big arms" in entryNames)
+        self.assertTrue("benchpress (test)")
