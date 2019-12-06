@@ -38,6 +38,7 @@ class Exercise(models.Model):
 
 class RoutineExercise(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    #references an exercise from the exercises table
     sets = models.IntegerField()
     reps = models.IntegerField()
     value = models.IntegerField()
