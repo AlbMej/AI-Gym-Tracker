@@ -22,7 +22,7 @@ class ApiAuth:
         is_valid = False
         username = None
         try:
-            print(models.User.objects.get(username='test2'))
+            print(models.User.objects.filter(username='test_gabe'))
             # auth = request.META['HTTP_AUTHORIZATION'].split(' ', 1)
             # username, api_key = base64.b64decode(auth[1]).decode('utf-8').split(':', 1)
             # user = models.User.objects.get(username=username)
