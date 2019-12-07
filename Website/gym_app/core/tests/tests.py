@@ -226,15 +226,23 @@ class UserRoutineLogTestCase(TestCase):
     def test_user_query(self):
         #good example of djongo query
         userQuerySet = User.objects.filter(username="rcos_is_fun")
+        #Finds the set of user objects, filters by the username property
+
         self.assertEqual(len(userQuerySet), 1)
         user = userQuerySet[0]
         self.assertEqual(user.email, "turnew2@rpi.edu")
+        #there should be only one user in the query set
 
     def test_multiple_entries_query(self):
         entryQuerySet = LogEntry.objects.all()
+        #query for all saved LogEntry's
+
         self.assertEqual(len(entryQuerySet), 2)
         entryNames = set()
         for e in entryQuerySet:
             entryNames.add(e.name)
+        #I don't think query sets are ordered, so we'll just collect names
+        #and make sure the expected entries are present
+
         self.assertTrue("big arms" in entryNames)
-        self.assertTrue("benchpress (test)")
+        self.assertTrue("benchpress (test)" in entryNames)
