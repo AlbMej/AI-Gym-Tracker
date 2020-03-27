@@ -95,11 +95,13 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 #          Moved database credentials to a local file             #
 ###################################################################
 
+
 DATABASES = {
     'default': {
         'ENGINE'  : 'djongo',
-        'NAME'    : 'AIPSA',
-        'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
+        'NAME'    : 'ai-sports',
+        # 'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
+        'HOST'    : f'mongodb+srv://{AIPSA_USER}:{AIPSA_PASS}@ai-sports-7kcem.mongodb.net/test?retryWrites=true&w=majority',
         'USER'    : AIPSA_USER,
         'PASSWORD': AIPSA_PASS,
     }
