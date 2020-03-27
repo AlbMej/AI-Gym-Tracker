@@ -3,7 +3,6 @@ from decouple import config
 DEBUG = False
 ADMINS = [('Alberto Mejia', 'albertomejia295@gmail.com')]
 
-
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
@@ -24,7 +23,6 @@ SECRET_KEY = config('SECRET_KEY')
 # AIPSA_PASS = config('AIPSA_PASS')
 #
 # DATABASES = {
-#
 #     'mongo': {
 #         'ENGINE'  : 'djongo',
 #         'NAME'    : 'AIPSA',

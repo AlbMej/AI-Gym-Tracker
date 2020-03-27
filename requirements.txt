@@ -1,4 +1,4 @@
-django>=2.0,<3
+django
 django-bootstrap4
 django-crispy-forms
 dj-database-url

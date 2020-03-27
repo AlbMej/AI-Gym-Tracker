@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
 from decouple import config
-#import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,17 +96,20 @@ WSGI_APPLICATION = 'gym_app.wsgi.application'
 ###################################################################
 
 
-DATABASES = {
-    'default': {
-        'ENGINE'  : 'djongo',
-        'NAME'    : 'ai-sports',
-        # 'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
-        'HOST'    : f'mongodb+srv://{AIPSA_USER}:{AIPSA_PASS}@ai-sports-7kcem.mongodb.net/test?retryWrites=true&w=majority',
-        'USER'    : AIPSA_USER,
-        'PASSWORD': AIPSA_PASS,
-    }
-}
-#DATABASES['default'] = dj_database_url.config()
+# DATABASES = {
+#     'default': {
+#         'ENGINE'  : 'djongo',
+#         'NAME'    : 'ai-sports',
+#         # 'HOST'    : 'mongodb+srv://' + AIPSA_USER + ':' + AIPSA_PASS + '@aipsa-cftw0.mongodb.net/test?retryWrites=true',
+#         'HOST'    : f'mongodb+srv://{AIPSA_USER}:{AIPSA_PASS}@ai-sports-7kcem.mongodb.net/test?retryWrites=true&w=majority',
+#         'USER'    : AIPSA_USER,
+#         'PASSWORD': AIPSA_PASS,
+#     }
+# }
+
+
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(default='sqlite:/mydatabase.sqlite') # Use Postgres
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
