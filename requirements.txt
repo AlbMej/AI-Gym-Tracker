@@ -9,7 +9,7 @@ psycopg2-binary
 gunicorn
 whitenoise
 Unipath
-djongo
+djongo==1.2.38
 django-weeklycalendar
 python-dateutil
 dnspython
