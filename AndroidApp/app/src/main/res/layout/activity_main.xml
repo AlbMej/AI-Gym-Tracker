@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/antic"
+        android:text="@string/welcome"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#9F00F6"
+        android:textColorHighlight="#30BBCD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412" />
+
+    <TextView
+        android:id="@+id/Homepage"
+        android:layout_width="300dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="150dp"
+        android:elevation="@dimen/activity_horizontal_margin"
+        android:fadingEdge="horizontal|vertical"
+        android:fontFamily="@font/antic"
+        android:text="@string/logo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#9F00F6"
+        android:textColorHighlight="#30BBCD"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:justificationMode="inter_word"
+        android:layout_width="348dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/antic"
+        android:text="@string/create_login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#9F00F6"
+        android:textColorHighlight="#30BBCD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/Login"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:text="@string/login_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="161dp" />
+
+    <Button
+        android:id="@+id/SignUp"
+        style="@android:style/Widget.DeviceDefault.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorBackground"
+        android:text="@string/create_account"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebooklogin" />
+
+    <Button
+        android:id="@+id/facebooklogin"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/gradient_blue_purple"
+        android:enabled="false"
+        android:text="@string/facebook_login"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googlelogin" />
+
+    <Button
+        android:id="@+id/googlelogin"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="200dp"
+        android:layout_height="47dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="264dp"
+        android:background="@drawable/gradient_blue_purple"
+        android:enabled="false"
+        android:text="@string/google_login"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

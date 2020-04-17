@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AISports</string>
+    <string name="welcome">Welcome to GymTracker, visitor!</string>
+    <string name="logo">Welcome to STATISTA</string>
+    <string name="create_login">Create an account or login to start tracking your workouts.</string>
+    <string name="signup">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="user">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgotten_password">Forgot your password?</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login1">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">Invalid username/password combination</string>
+    <string name="message_placeholder">Write a message</string>
+    <string name="facebook_login">Log in with Facebook</string>
+    <string name="google_login">Log in with Google</string>
+    <string name="create_account">Create an account here.</string>
+    <string name="login_text">Already have an account? Login.</string>
+</resources>

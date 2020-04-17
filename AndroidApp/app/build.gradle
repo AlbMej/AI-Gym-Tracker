@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.example.aisports"
+        minSdkVersion 25
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
+
+        aaptOptions {
+            noCompress "tflite"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+    maven { url "https://fritz.mycloudrepo.io/public/repositories/android" }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //TODO: used only to access database; delete these when we can use REST API to access database instead
+    implementation 'org.jetbrains.exposed:exposed-core:0.22.1'
+    implementation 'org.jetbrains.exposed:exposed-dao:0.22.1'
+    implementation 'org.jetbrains.exposed:exposed-jdbc:0.22.1'
+    implementation 'org.jetbrains.exposed:exposed-jodatime:0.22.1'
+    implementation 'org.jetbrains.exposed:exposed-java-time:0.22.1'
+    implementation("org.postgresql:postgresql:42.2.2")
+    ////////////////////////////////////////////////////////////////
+
+    //FRITZ AI Pose Estimation
+    implementation "ai.fritz:core:${coreVersion}"
+    implementation "ai.fritz:vision:+"
+    implementation 'ai.fritz:vision-pose-estimation-model-accurate:3.0.0'
+}
