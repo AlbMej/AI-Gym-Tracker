@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name='AI_Gym_Tracker'
