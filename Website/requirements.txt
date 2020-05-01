@@ -1,0 +1,6 @@
+django>=3.0.5
+django-webpack-loader>=0.7.0
+python-decouple>=3.3 
+dj-database-url>=0.5.0
+djangorestframework>=3.11.0
+django-rest-knox>=4.1.0
