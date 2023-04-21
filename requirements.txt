@@ -13,4 +13,4 @@ djongo
 django-weeklycalendar
 python-dateutil
 dnspython
-sqlparse==0.2.4
+sqlparse==0.4.4
